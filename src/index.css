@@ -1,0 +1,146 @@
+:root {
+  /* Default Dark Theme */
+  --bg-color: #0a0a0a;
+  --text-color: #ffffff;
+  --primary-color: #00f2ff;
+  --secondary-color: #7000ff;
+  --accent-color: #ff0055;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --font-main: 'Outfit', sans-serif;
+  --card-bg: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme='light'] {
+  --bg-color: #f0f2f5;
+  --text-color: #1a1a1a;
+  --primary-color: #0070f3;
+  --secondary-color: #7928ca;
+  --accent-color: #ff0080;
+  --glass-bg: rgba(255, 255, 255, 0.9); /* Increased opacity for better contrast */
+  --glass-border: rgba(0, 0, 0, 0.1);
+  --card-bg: rgba(255, 255, 255, 0.95);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--glass-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section {
+  padding: 80px 0;
+}
+
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 24px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px -10px rgba(0, 242, 255, 0.2);
+  border-color: var(--primary-color);
+}
+
+.gradient-text {
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Navbar Styles */
+@media (max-width: 768px) {
+  .desktop-menu {
+    display: none !important;
+  }
+  .mobile-toggle {
+    display: block !important;
+  }
+}
+
+/* Button Styles */
+.btn-primary {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 242, 255, 0.4);
+}
+
+.btn-secondary {
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(0, 242, 255, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 242, 255, 0.2);
+}
+
+/* Skill Card Styles */
+.skill-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px) scale(1.05);
+  border-color: var(--primary-color);
+  box-shadow: 0 5px 15px rgba(112, 0, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+}
