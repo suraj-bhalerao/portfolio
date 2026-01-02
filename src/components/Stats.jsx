@@ -86,19 +86,20 @@ const Stats = ({ githubUsername, leetcodeUsername }) => {
             </h3>
             
             <div style={{ 
-              display: 'flex', 
-              justifyContent: 'center',
               width: '100%',
-              overflow: 'hidden',
-              padding: '0 10px'
+              overflowX: 'auto',
+              padding: '10px 0',
+              WebkitOverflowScrolling: 'touch'
             }}>
               <div style={{ 
                 display: 'grid', 
                 gridTemplateColumns: 'repeat(53, 1fr)', 
                 gap: '2px',
                 width: '100%',
+                minWidth: '700px', // Ensure it doesn't get too squashed
                 maxWidth: '800px',
-                aspectRatio: '53 / 7'
+                aspectRatio: '53 / 7',
+                margin: '0 auto'
               }}>
                 {gitStats && gitStats.contributions ? (
                   gitStats.contributions.slice(-371).map((day, index) => (

@@ -9,7 +9,7 @@ const Contact = () => {
         
         <div className="glass-card" style={{ maxWidth: '600px', margin: '0 auto' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+            <div className="contact-item" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
               <div style={{ 
                 width: '60px', 
                 height: '60px', 
@@ -29,7 +29,7 @@ const Contact = () => {
               </div>
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+            <div className="contact-item" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
               <div style={{ 
                 width: '60px', 
                 height: '60px', 
@@ -49,7 +49,7 @@ const Contact = () => {
               </div>
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+            <div className="contact-item" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
               <div style={{ 
                 width: '60px', 
                 height: '60px', 

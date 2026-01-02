@@ -99,11 +99,63 @@ ul {
   background-clip: text;
 }
 
-/* Navbar Styles */
+/* Responsive Utilities */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+@media (max-width: 992px) {
+  .section {
+    padding: 60px 0;
+  }
+  
+  .grid-2 {
+    gap: 2rem;
+  }
+}
+
 @media (max-width: 768px) {
+  .section {
+    padding: 40px 0;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+
+  .hero-content {
+    order: 2;
+  }
+
+  .hero-image {
+    order: 1;
+  }
+
+  .hero-content h1 {
+    font-size: 3rem !important;
+  }
+
+  .hero-content h3 {
+    font-size: 1.5rem !important;
+  }
+
+  .hero-content p {
+    margin: 0 auto 2.5rem auto !important;
+  }
+
+  .hero-content div {
+    justify-content: center;
+  }
+
   .desktop-menu {
     display: none !important;
   }
+
   .mobile-toggle {
     display: block !important;
   }
@@ -147,4 +199,40 @@ ul {
   border-color: var(--primary-color);
   box-shadow: 0 5px 15px rgba(112, 0, 255, 0.3);
   background: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 2.5rem !important;
+  }
+
+  .hero-image .glass-card {
+    width: 280px !important;
+    height: 360px !important;
+  }
+
+  .btn-primary, .btn-secondary {
+    padding: 10px 20px !important;
+    font-size: 0.9rem !important;
+  }
+
+  .container {
+    padding: 0 15px;
+  }
+
+  h2.gradient-text {
+    font-size: 2rem !important;
+    margin-bottom: 2rem !important;
+  }
+
+  .contact-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem !important;
+  }
+
+  .contact-item a {
+    font-size: 1rem !important;
+    word-break: break-all;
+  }
 }

@@ -6,7 +6,7 @@ const About = () => {
       <div className="container">
         <h2 className="gradient-text" style={{ fontSize: '2.5rem', marginBottom: '3rem', textAlign: 'center' }}>About Me</h2>
         
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+        <div className="grid-2">
           <div className="glass-card">
             <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: 'var(--primary-color)' }}>My Journey</h3>
             <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>

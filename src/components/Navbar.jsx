@@ -118,7 +118,51 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu Overlay */}
-      {/* (Add media queries in CSS for responsiveness) */}
+      {isOpen && (
+        <div 
+          onClick={() => setIsOpen(false)}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100vh',
+            background: 'rgba(0,0,0,0.5)',
+            backdropFilter: 'blur(4px)',
+            zIndex: 998
+          }}
+        />
+      )}
+      <div style={{
+        position: 'fixed',
+        top: 0,
+        right: isOpen ? 0 : '-100%',
+        width: '80%',
+        height: '100vh',
+        background: 'var(--bg-color)',
+        borderLeft: '1px solid var(--glass-border)',
+        padding: '80px 40px',
+        transition: 'right 0.3s ease',
+        zIndex: 999,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '2rem'
+      }}>
+        {navLinks.map((link) => (
+          <a 
+            key={link.name} 
+            href={link.href}
+            onClick={() => setIsOpen(false)}
+            style={{ 
+              color: 'var(--text-color)', 
+              fontSize: '1.2rem',
+              fontWeight: 500
+            }}
+          >
+            {link.name}
+          </a>
+        ))}
+      </div>
     </nav>
   );
 };

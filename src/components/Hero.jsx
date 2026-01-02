@@ -6,7 +6,7 @@ import resumeFile from '../assets/Resume.pdf';
 const Hero = () => {
   return (
     <section id="home" className="section" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', paddingTop: '100px' }}>
-      <div className="container" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+      <div className="container grid-2">
         <div className="hero-content">
           <h2 style={{ fontSize: '1.5rem', color: 'var(--primary-color)', marginBottom: '1rem' }}>Hello, I'm</h2>
           <h1 style={{ fontSize: '4rem', fontWeight: 'bold', lineHeight: 1.1, marginBottom: '1rem' }}>
@@ -102,10 +102,11 @@ const Hero = () => {
           </div>
         </div>
         
-        <div className="hero-image" style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
+        <div className="hero-image" style={{ position: 'relative', display: 'flex', justifyContent: 'center', width: '100%' }}>
           <div style={{ 
-            width: '450px', 
-            height: '450px', 
+            width: '100%', 
+            maxWidth: '500px', 
+            height: '500px', 
             background: 'linear-gradient(45deg, var(--primary-color), var(--secondary-color))',
             borderRadius: '50%',
             opacity: 0.2,
@@ -120,8 +121,10 @@ const Hero = () => {
             padding: '10px', 
             borderRadius: '20px', 
             overflow: 'hidden',
-            width: '350px',
-            height: '450px',
+            width: '100%',
+            maxWidth: '450px',
+            height: 'auto',
+            aspectRatio: '4 / 5',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
