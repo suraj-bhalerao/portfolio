@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
+import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Stats from './components/Stats';
 import Contact from './components/Contact';
@@ -16,6 +17,7 @@ function App() {
       <Navbar />
       <Hero />
       <About />
+      <Experience />
       <Projects username={githubUsername} />
       <Stats githubUsername={githubUsername} leetcodeUsername={leetcodeUsername} />
       <Contact />
