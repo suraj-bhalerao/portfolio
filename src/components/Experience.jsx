@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Briefcase, Calendar } from 'lucide-react';
 
 const Experience = () => {
@@ -14,17 +13,7 @@ const Experience = () => {
         'Design and write new automated test cases for new features and bug fixes.',
         'Maintain comprehensive test case documentation for better traceability and knowledge sharing.'
       ]
-    },
-    // {
-    //   title: '',
-    //   company: 'Previous Company / Internship',
-    //   duration: 'Before Aug 2024',
-    //   responsibilities: [
-    //     'Learned core automation testing concepts and tools.',
-    //     'Assisted in manual testing and bug reporting.',
-    //     'Developed basic test scripts using Java and Selenium.'
-    //   ]
-    // }
+    }
   ];
 
   return (
@@ -34,12 +23,8 @@ const Experience = () => {
         
         <div className="timeline">
           {experiences.map((exp, index) => (
-            <motion.div 
+            <div 
               key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
               className={`timeline-item ${index % 2 === 0 ? 'left' : 'right'}`}
             >
               <div className="timeline-dot">
@@ -76,7 +61,7 @@ const Experience = () => {
                   ))}
                 </ul>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

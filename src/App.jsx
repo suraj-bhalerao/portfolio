@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="app">
       <Navbar />
-      <Hero />
+      <Hero leetcodeUsername={leetcodeUsername} />
       <About />
       <Experience />
       <Projects username={githubUsername} />

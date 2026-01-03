@@ -1,6 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Code2, Terminal, Cpu, Globe } from 'lucide-react';
+import { Terminal, Cpu } from 'lucide-react';
 
 const About = () => {
   const skills = [
@@ -13,30 +12,10 @@ const About = () => {
     'WinSCP', 'AWS S3'
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.05
-      }
-    }
-  };
-
-  const skillVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: { opacity: 1, scale: 1 }
-  };
-
   return (
     <section id="about" className="section" style={{ position: 'relative', overflow: 'hidden' }}>
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
+        <div>
           <h2 className="gradient-text" style={{ fontSize: '2.5rem', marginBottom: '3rem', textAlign: 'center' }}>About Me</h2>
           
           <div className="grid-2" style={{ alignItems: 'start' }}>
@@ -62,18 +41,10 @@ const About = () => {
                 </div>
                 <h3 style={{ fontSize: '1.5rem', color: 'var(--text-color)' }}>Technical Arsenal</h3>
               </div>
-              <motion.div 
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                style={{ display: 'flex', flexWrap: 'wrap', gap: '0.8rem', justifyContent: 'center' }}
-              >
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.8rem', justifyContent: 'center' }}>
                 {skills.map((skill) => (
-                  <motion.div 
+                  <div 
                     key={skill} 
-                    variants={skillVariants}
-                    whileHover={{ y: -5, scale: 1.05, borderColor: 'var(--primary-color)', boxShadow: '0 5px 15px rgba(0, 242, 255, 0.2)' }}
                     className="skill-card" 
                     style={{ 
                       padding: '0.8rem 1.2rem', 
@@ -88,12 +59,12 @@ const About = () => {
                     }}
                   >
                     {skill}
-                  </motion.div>
+                  </div>
                 ))}
-              </motion.div>
+              </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

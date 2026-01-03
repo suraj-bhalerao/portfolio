@@ -1,7 +1,6 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import useGitHub from '../hooks/useGitHub';
-import { Star, GitFork, ExternalLink, Folder, Code2 } from 'lucide-react';
+import { ExternalLink, Code2, Star, GitFork } from 'lucide-react';
 import project1 from '../assets/project1.png';
 import project2 from '../assets/project2.png';
 import project3 from '../assets/project3.png';
@@ -75,38 +74,16 @@ const Projects = ({ username }) => {
     }
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0 }
-  };
-
   return (
     <section id="projects" className="section">
       <div className="container">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={containerVariants}
-        >
+        <div>
           <h2 className="gradient-text" style={{ fontSize: '2.5rem', marginBottom: '3rem', textAlign: 'center' }}>Featured Projects</h2>
           
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2.5rem' }}>
             {projects.map((repo) => (
-              <motion.div 
+              <div 
                 key={repo.id} 
-                variants={itemVariants}
-                whileHover={{ y: -10 }}
                 className="glass-card" 
                 style={{ 
                   display: 'flex', 
@@ -116,11 +93,11 @@ const Projects = ({ username }) => {
                   overflow: 'hidden',
                   padding: 0,
                   border: '1px solid var(--glass-border)',
-                  transition: 'border-color 0.3s'
+                  transition: 'transform 0.3s, border-color 0.3s'
                 }}
               >
                 <div style={{ height: '180px', overflow: 'hidden', position: 'relative' }}>
-                  <img src={repo.image} alt={repo.name} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s' }} className="project-img" />
+                  <img src={repo.image} alt={repo.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} className="project-img" />
                   <div style={{ 
                     position: 'absolute', 
                     top: 0, 
@@ -139,15 +116,14 @@ const Projects = ({ username }) => {
                       </div>
                       <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'var(--text-color)' }}>{repo.name}</h3>
                     </div>
-                    <motion.a 
+                    <a 
                       href={repo.html_url} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      whileHover={{ scale: 1.2, color: 'var(--primary-color)' }}
                       style={{ color: 'var(--text-muted)', transition: 'color 0.3s' }}
                     >
                       <ExternalLink size={20} />
-                    </motion.a>
+                    </a>
                   </div>
                   
                   <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', flex: 1, fontSize: '0.95rem', lineHeight: '1.6' }}>
@@ -175,10 +151,10 @@ const Projects = ({ username }) => {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

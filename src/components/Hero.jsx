@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Github, Linkedin, Mail, ArrowRight, MousePointer2, Code2, Award, Clock } from 'lucide-react';
+import { Github, Linkedin, Mail, ArrowRight, Code2, Award, Clock } from 'lucide-react';
 import profileImage from '../assets/profile.jpg';
 import resumeFile from '../assets/Resume.pdf';
+import useLeetCode from '../hooks/useLeetCode';
 
-const Hero = () => {
+const Hero = ({ leetcodeUsername }) => {
   const [titleIndex, setTitleIndex] = useState(0);
+  const { stats: leetStats } = useLeetCode(leetcodeUsername);
+  
   const titles = [
     'Automation Test Engineer',
     'SDET Specialist',
@@ -23,12 +25,12 @@ const Hero = () => {
   const quickStats = [
     { icon: <Clock size={16} />, label: 'Experience', value: 'Aug 2024 - Present' },
     { icon: <Code2 size={16} />, label: 'Expertise', value: '15+ Tools' },
-    { icon: <Award size={16} />, label: 'LeetCode', value: '500+' }
+    { icon: <Award size={16} />, label: 'LeetCode', value: leetStats?.totalSolved || '500+' }
   ];
 
   return (
     <section id="home" className="section hero-section" style={{ position: 'relative', overflow: 'hidden' }}>
-      {/* Background Animated Blobs */}
+      {/* Background Blobs (Static) */}
       <div className="hero-bg-blobs">
         <div className="blob blob-1"></div>
         <div className="blob blob-2"></div>
@@ -36,61 +38,27 @@ const Hero = () => {
       </div>
 
       <div className="container grid-2" style={{ position: 'relative', zIndex: 1 }}>
-        <motion.div 
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          className="hero-content"
-        >
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            style={{ fontSize: '1.5rem', color: 'var(--primary-color)', marginBottom: '1rem', fontWeight: '500' }}
-          >
+        <div className="hero-content">
+          <h2 style={{ fontSize: '1.5rem', color: 'var(--primary-color)', marginBottom: '1rem', fontWeight: '500' }}>
             Hello, I'm
-          </motion.h2>
+          </h2>
           
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            style={{ fontSize: 'clamp(3rem, 8vw, 4.5rem)', fontWeight: '800', lineHeight: 1.1, marginBottom: '1rem', letterSpacing: '-0.02em' }}
-          >
+          <h1 style={{ fontSize: 'clamp(3rem, 8vw, 4.5rem)', fontWeight: '800', lineHeight: 1.1, marginBottom: '1rem', letterSpacing: '-0.02em' }}>
             Suraj <span className="gradient-text">Bhalerao</span>
-          </motion.h1>
+          </h1>
 
           <div style={{ height: '3rem', marginBottom: '1.5rem' }}>
-            <AnimatePresence mode="wait">
-              <motion.h3 
-                key={titleIndex}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-                style={{ fontSize: '2rem', color: 'var(--text-muted)', fontWeight: '600' }}
-              >
-                {titles[titleIndex]}
-              </motion.h3>
-            </AnimatePresence>
+            <h3 style={{ fontSize: '2rem', color: 'var(--text-muted)', fontWeight: '600' }}>
+              {titles[titleIndex]}
+            </h3>
           </div>
 
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', marginBottom: '2.5rem', maxWidth: '540px', lineHeight: '1.7' }}
-          >
+          <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', marginBottom: '2.5rem', maxWidth: '540px', lineHeight: '1.7' }}>
             Crafting robust automation solutions to ensure software excellence. Expert in building scalable frameworks with Selenium, Appium, and Java, seamlessly integrated with modern CI/CD pipelines.
-          </motion.p>
+          </p>
 
           {/* Quick Stats Row */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            style={{ display: 'flex', gap: '2rem', marginBottom: '3rem', flexWrap: 'wrap' }}
-          >
+          <div style={{ display: 'flex', gap: '2rem', marginBottom: '3rem', flexWrap: 'wrap' }}>
             {quickStats.map((stat, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <div style={{ color: 'var(--primary-color)', background: 'var(--glass-bg)', padding: '8px', borderRadius: '10px', border: '1px solid var(--glass-border)' }}>
@@ -102,14 +70,9 @@ const Hero = () => {
                 </div>
               </div>
             ))}
-          </motion.div>
+          </div>
           
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}
-          >
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
               <a href="#projects" className="btn-primary" style={{ 
                 padding: '14px 35px', 
@@ -155,13 +118,13 @@ const Hero = () => {
                   title: "LeetCode" 
                 }
               ].map((social, i) => (
-                <motion.a 
+                <a 
                   key={i}
                   href={social.href} 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   title={social.title}
-                  whileHover={{ y: -5, background: 'var(--primary-color)', color: 'white' }}
+                  className="social-link"
                   style={{ 
                     width: '48px', 
                     height: '48px', 
@@ -176,30 +139,14 @@ const Hero = () => {
                   }}
                 >
                   {social.icon}
-                </motion.a>
+                </a>
               ))}
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
         
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="hero-image-container"
-          style={{ position: 'relative', display: 'flex', justifyContent: 'center', width: '100%' }}
-        >
-          <motion.div 
-            animate={{ 
-              y: [0, -20, 0],
-              rotate: [0, 2, 0]
-            }}
-            transition={{ 
-              duration: 6, 
-              repeat: Infinity, 
-              ease: "easeInOut" 
-            }}
-            className="glass-card hero-image-card"
+        <div className="hero-image-container" style={{ position: 'relative', display: 'flex', justifyContent: 'center', width: '100%' }}>
+          <div className="glass-card hero-image-card"
             style={{ 
               padding: '15px', 
               borderRadius: '30px', 
@@ -227,11 +174,8 @@ const Hero = () => {
                 borderRadius: '20px'
               }} 
             />
-            {/* Floating Badge */}
-            <motion.div 
-              animate={{ x: [0, 10, 0] }}
-              transition={{ duration: 4, repeat: Infinity }}
-              style={{
+            {/* Floating Badge (Static) */}
+            <div style={{
                 position: 'absolute',
                 bottom: '30px',
                 right: '-20px',
@@ -248,17 +192,13 @@ const Hero = () => {
             >
               <div style={{ width: '10px', height: '10px', background: '#10b981', borderRadius: '50%', boxShadow: '0 0 10px #10b981' }} />
               <span style={{ fontSize: '0.85rem', fontWeight: 'bold', color: 'var(--text-color)' }}>Available for Hire</span>
-            </motion.div>
-          </motion.div>
-        </motion.div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        style={{
+      {/* Scroll Indicator (Static) */}
+      <div style={{
           position: 'absolute',
           bottom: '30px',
           left: '50%',
@@ -271,10 +211,7 @@ const Hero = () => {
         }}
       >
         <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '2px' }}>Scroll</span>
-        <motion.div 
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          style={{
+        <div style={{
             width: '24px',
             height: '40px',
             border: '2px solid var(--glass-border)',
@@ -284,13 +221,9 @@ const Hero = () => {
             paddingTop: '6px'
           }}
         >
-          <motion.div 
-            animate={{ opacity: [1, 0, 1], y: [0, 15, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            style={{ width: '4px', height: '8px', background: 'var(--primary-color)', borderRadius: '2px' }}
-          />
-        </motion.div>
-      </motion.div>
+          <div style={{ width: '4px', height: '8px', background: 'var(--primary-color)', borderRadius: '2px' }} />
+        </div>
+      </div>
     </section>
   );
 };

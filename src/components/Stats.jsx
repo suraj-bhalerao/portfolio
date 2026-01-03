@@ -1,6 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Github, Trophy, Target, Zap, BarChart3, Info, Code2, Award, Activity } from 'lucide-react';
+import { Github, Trophy, Activity, Info } from 'lucide-react';
 import useLeetCode from '../hooks/useLeetCode';
 import useGitHubStats from '../hooks/useGitHubStats';
 
@@ -33,12 +32,7 @@ const Stats = ({ githubUsername, leetcodeUsername }) => {
   return (
     <section id="stats" className="section" style={{ position: 'relative' }}>
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
+        <div>
           <h2 className="gradient-text" style={{ fontSize: '2.5rem', marginBottom: '3rem', textAlign: 'center' }}>Coding Performance</h2>
           
           <div className="glass-card" style={{ 
@@ -79,12 +73,10 @@ const Stats = ({ githubUsername, leetcodeUsername }) => {
                   <div style={{ position: 'relative', width: '130px', height: '130px' }}>
                     <svg width="130" height="130" viewBox="0 0 120 120">
                       <circle cx="60" cy="60" r="54" fill="none" stroke="var(--glass-border)" strokeWidth="8" />
-                      <motion.circle 
+                      <circle 
                         cx="60" cy="60" r="54" fill="none" stroke="var(--primary-color)" strokeWidth="8" 
                         strokeDasharray="339.29"
-                        initial={{ strokeDashoffset: 339.29 }}
-                        whileInView={{ strokeDashoffset: 339.29 - (displayLeet.totalSolved / 2000) * 339.29 }}
-                        transition={{ duration: 2, ease: "easeOut" }}
+                        strokeDashoffset={339.29 - (displayLeet.totalSolved / 2000) * 339.29}
                         strokeLinecap="round"
                         transform="rotate(-90 60 60)"
                         style={{ filter: 'drop-shadow(0 0 5px var(--primary-color))' }}
@@ -119,11 +111,14 @@ const Stats = ({ githubUsername, leetcodeUsername }) => {
                         <span style={{ color: 'var(--text-color)', fontWeight: '500' }}>{item.solved}<span style={{ color: 'var(--text-muted)', fontWeight: 'normal' }}>/{item.total}</span></span>
                       </div>
                       <div style={{ height: '8px', background: 'var(--glass-border)', borderRadius: '4px', overflow: 'hidden' }}>
-                        <motion.div 
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${(item.solved / item.total) * 100}%` }}
-                          transition={{ duration: 1.5, delay: 0.2 }}
-                          style={{ height: '100%', background: item.color, borderRadius: '4px', boxShadow: `0 0 10px ${item.color}44` }}
+                        <div 
+                          style={{ 
+                            height: '100%', 
+                            width: `${(item.solved / item.total) * 100}%`,
+                            background: item.color, 
+                            borderRadius: '4px', 
+                            boxShadow: `0 0 10px ${item.color}44` 
+                          }}
                         />
                       </div>
                     </div>
@@ -157,9 +152,8 @@ const Stats = ({ githubUsername, leetcodeUsername }) => {
                   }}>
                     {gitStats && gitStats.contributions ? (
                       gitStats.contributions.slice(-371).map((day, index) => (
-                        <motion.div 
+                        <div 
                           key={index} 
-                          whileHover={{ scale: 1.5, zIndex: 10 }}
                           style={{ 
                             width: '100%', 
                             height: '100%',
@@ -210,7 +204,7 @@ const Stats = ({ githubUsername, leetcodeUsername }) => {
 
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
