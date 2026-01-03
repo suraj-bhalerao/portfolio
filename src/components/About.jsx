@@ -1,43 +1,99 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { Code2, Terminal, Cpu, Globe } from 'lucide-react';
 
 const About = () => {
+  const skills = [
+    'Java', 'Python', 
+    'Selenium WebDriver', 'TestNG', 'Page Object Model',
+    'Postman', 'RestAssured',
+    'Maven', 'GitHub Actions',
+    'Git', 'GitHub',
+    'Jira',
+    'WinSCP', 'AWS S3'
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05
+      }
+    }
+  };
+
+  const skillVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: { opacity: 1, scale: 1 }
+  };
+
   return (
-    <section id="about" className="section" style={{ background: 'linear-gradient(180deg, transparent, var(--glass-bg), transparent)' }}>
+    <section id="about" className="section" style={{ position: 'relative', overflow: 'hidden' }}>
       <div className="container">
-        <h2 className="gradient-text" style={{ fontSize: '2.5rem', marginBottom: '3rem', textAlign: 'center' }}>About Me</h2>
-        
-        <div className="grid-2">
-          <div className="glass-card">
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: 'var(--primary-color)' }}>My Journey</h3>
-            <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>
-              I am a passionate Automation Test Engineer with a strong background in ensuring software quality through robust testing frameworks. My expertise lies in designing and executing automated test scripts to enhance product reliability.
-            </p>
-            <p style={{ color: 'var(--text-secondary)' }}>
-              I specialize in building scalable automation solutions using tools like Selenium, Appium, and Cypress. I am dedicated to integrating continuous testing into CI/CD pipelines to deliver high-quality software at speed.
-            </p>
-          </div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="gradient-text" style={{ fontSize: '2.5rem', marginBottom: '3rem', textAlign: 'center' }}>About Me</h2>
           
-          <div className="skills-grid" style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
-            {[
-              'Java', 'Python', 
-              'Selenium WebDriver', 'TestNG', 'Page Object Model',
-              'Postman', 'RestAssured',
-              'Maven', 'GitHub Actions',
-              'Git', 'GitHub',
-              'Jira',
-              'WinSCP', 'AWS S3'
-            ].map((skill) => (
-              <div key={skill} className="skill-card" style={{ 
-                padding: '1rem 1.5rem', 
-                fontSize: '1.1rem',
-                color: 'var(--text-color)',
-                minWidth: '120px'
-              }}>
-                {skill}
+          <div className="grid-2" style={{ alignItems: 'start' }}>
+            <div className="glass-card" style={{ padding: '2.5rem', height: '100%' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '1.5rem' }}>
+                <div style={{ padding: '8px', background: 'rgba(0, 242, 255, 0.1)', borderRadius: '10px', color: 'var(--primary-color)' }}>
+                  <Terminal size={24} />
+                </div>
+                <h3 style={{ fontSize: '1.5rem', color: 'var(--text-color)' }}>My Journey</h3>
               </div>
-            ))}
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', fontSize: '1.05rem', lineHeight: '1.8' }}>
+                I am a dedicated **Automation Test Engineer** with a passion for building robust, scalable testing solutions. My journey is driven by a commitment to software excellence and a deep understanding of the automation lifecycle.
+              </p>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', lineHeight: '1.8' }}>
+                I specialize in architecting frameworks from scratch using **Java, Selenium, and Appium**, ensuring high-quality delivery through seamless **CI/CD integration**.
+              </p>
+            </div>
+            
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '1.5rem', justifyContent: 'center' }}>
+                <div style={{ padding: '8px', background: 'rgba(112, 0, 255, 0.1)', borderRadius: '10px', color: 'var(--secondary-color)' }}>
+                  <Cpu size={24} />
+                </div>
+                <h3 style={{ fontSize: '1.5rem', color: 'var(--text-color)' }}>Technical Arsenal</h3>
+              </div>
+              <motion.div 
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                style={{ display: 'flex', flexWrap: 'wrap', gap: '0.8rem', justifyContent: 'center' }}
+              >
+                {skills.map((skill) => (
+                  <motion.div 
+                    key={skill} 
+                    variants={skillVariants}
+                    whileHover={{ y: -5, scale: 1.05, borderColor: 'var(--primary-color)', boxShadow: '0 5px 15px rgba(0, 242, 255, 0.2)' }}
+                    className="skill-card" 
+                    style={{ 
+                      padding: '0.8rem 1.2rem', 
+                      fontSize: '0.95rem',
+                      fontWeight: '500',
+                      color: 'var(--text-color)',
+                      background: 'var(--glass-bg)',
+                      border: '1px solid var(--glass-border)',
+                      borderRadius: '10px',
+                      cursor: 'default',
+                      transition: 'all 0.3s ease'
+                    }}
+                  >
+                    {skill}
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

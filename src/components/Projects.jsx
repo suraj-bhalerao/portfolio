@@ -1,6 +1,7 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import useGitHub from '../hooks/useGitHub';
-import { Star, GitFork, ExternalLink, Folder } from 'lucide-react';
+import { Star, GitFork, ExternalLink, Folder, Code2 } from 'lucide-react';
 import project1 from '../assets/project1.png';
 import project2 from '../assets/project2.png';
 import project3 from '../assets/project3.png';
@@ -11,7 +12,6 @@ import project6 from '../assets/project6.png';
 const Projects = ({ username }) => {
   const { repos, loading, error } = useGitHub(username);
 
-  // Specific projects requested by user
   const projects = [
     {
       id: 1,
@@ -75,50 +75,110 @@ const Projects = ({ username }) => {
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0 }
+  };
+
   return (
     <section id="projects" className="section">
       <div className="container">
-        <h2 className="gradient-text" style={{ fontSize: '2.5rem', marginBottom: '3rem', textAlign: 'center' }}>Featured Projects</h2>
-        
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-          {projects.map((repo) => (
-            <div key={repo.id} className="glass-card" style={{ 
-              display: 'flex', 
-              flexDirection: 'column', 
-              height: '100%',
-              transition: 'transform 0.3s, box-shadow 0.3s',
-              cursor: 'pointer',
-              overflow: 'hidden',
-              padding: 0
-            }}>
-              <div style={{ height: '160px', overflow: 'hidden' }}>
-                <img src={repo.image} alt={repo.name} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s' }} className="project-img" />
-              </div>
-              <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <Folder size={20} color="var(--primary-color)" />
-                    <h3 style={{ fontSize: '1.1rem', fontWeight: 'bold' }}>{repo.name}</h3>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+        >
+          <h2 className="gradient-text" style={{ fontSize: '2.5rem', marginBottom: '3rem', textAlign: 'center' }}>Featured Projects</h2>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2.5rem' }}>
+            {projects.map((repo) => (
+              <motion.div 
+                key={repo.id} 
+                variants={itemVariants}
+                whileHover={{ y: -10 }}
+                className="glass-card" 
+                style={{ 
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  height: '100%',
+                  cursor: 'pointer',
+                  overflow: 'hidden',
+                  padding: 0,
+                  border: '1px solid var(--glass-border)',
+                  transition: 'border-color 0.3s'
+                }}
+              >
+                <div style={{ height: '180px', overflow: 'hidden', position: 'relative' }}>
+                  <img src={repo.image} alt={repo.name} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s' }} className="project-img" />
+                  <div style={{ 
+                    position: 'absolute', 
+                    top: 0, 
+                    left: 0, 
+                    width: '100%', 
+                    height: '100%', 
+                    background: 'linear-gradient(to bottom, transparent, rgba(0,0,0,0.5))',
+                    pointerEvents: 'none'
+                  }} />
+                </div>
+                <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <div style={{ padding: '8px', background: 'rgba(0, 242, 255, 0.1)', borderRadius: '8px' }}>
+                        <Code2 size={18} color="var(--primary-color)" />
+                      </div>
+                      <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'var(--text-color)' }}>{repo.name}</h3>
+                    </div>
+                    <motion.a 
+                      href={repo.html_url} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      whileHover={{ scale: 1.2, color: 'var(--primary-color)' }}
+                      style={{ color: 'var(--text-muted)', transition: 'color 0.3s' }}
+                    >
+                      <ExternalLink size={20} />
+                    </motion.a>
                   </div>
-                  <a href={repo.html_url} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-color)', opacity: 0.7, transition: 'opacity 0.3s' }}>
-                    <ExternalLink size={20} />
-                  </a>
+                  
+                  <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', flex: 1, fontSize: '0.95rem', lineHeight: '1.6' }}>
+                    {repo.description}
+                  </p>
+                  
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto' }}>
+                    <span style={{ 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      gap: '8px', 
+                      fontSize: '0.85rem', 
+                      color: 'var(--text-muted)',
+                      background: 'var(--glass-bg)',
+                      padding: '4px 12px',
+                      borderRadius: '20px',
+                      border: '1px solid var(--glass-border)'
+                    }}>
+                      <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--secondary-color)' }}></div>
+                      {repo.language}
+                    </span>
+                    <div style={{ display: 'flex', gap: '12px', color: 'var(--text-muted)', fontSize: '0.85rem' }}>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Star size={14} /> {repo.stargazers_count}</span>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><GitFork size={14} /> {repo.forks_count}</span>
+                    </div>
+                  </div>
                 </div>
-                
-                <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', flex: 1, fontSize: '0.9rem', lineHeight: '1.6' }}>
-                  {repo.description}
-                </p>
-                
-                <div style={{ display: 'flex', gap: '1.5rem', fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: 'auto' }}>
-                  <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--secondary-color)' }}></div>
-                    {repo.language}
-                  </span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );
