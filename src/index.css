@@ -167,6 +167,10 @@ ul {
 }
 
 @media (max-width: 992px) {
+  .section h2.gradient-text {
+    margin-bottom: 2.5rem !important;
+  }
+  
   .section {
     padding: 60px 0;
   }
@@ -216,6 +220,11 @@ ul {
 
   .hero-content div {
     justify-content: center;
+  }
+
+  .hero-image-card {
+    max-width: 280px !important;
+    margin: 0 auto;
   }
 
   .desktop-menu {
@@ -385,13 +394,14 @@ ul {
     font-size: 0.9rem !important;
   }
 
-  .container {
-    padding: 0 15px;
+  .hero-content div {
+    justify-content: center;
+    gap: 1rem;
   }
 
   h2.gradient-text {
-    font-size: 2rem !important;
-    margin-bottom: 2rem !important;
+    font-size: 2.2rem !important;
+    margin-bottom: 2.5rem !important;
   }
 
   .contact-item {

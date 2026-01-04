@@ -34,10 +34,10 @@ const Stats = ({ githubUsername, leetcodeUsername }) => {
       <div className="container">
         <div>
           <h2 className="gradient-text" style={{ fontSize: '2.5rem', marginBottom: '3rem', textAlign: 'center' }}>Coding Performance</h2>
-          
-          <div className="glass-card" style={{ 
-            padding: '3rem', 
-            maxWidth: '1100px', 
+
+          <div className="glass-card" style={{
+            padding: '3rem',
+            maxWidth: '1100px',
             margin: '0 auto',
             boxShadow: '0 20px 50px rgba(0, 0, 0, 0.3)',
             border: '1px solid var(--glass-border)',
@@ -45,21 +45,21 @@ const Stats = ({ githubUsername, leetcodeUsername }) => {
             overflow: 'hidden'
           }}>
             {/* Decorative background glow */}
-            <div style={{ 
-              position: 'absolute', 
-              top: '-100px', 
-              right: '-100px', 
-              width: '300px', 
-              height: '300px', 
-              background: 'var(--primary-color)', 
-              opacity: 0.05, 
+            <div style={{
+              position: 'absolute',
+              top: '-100px',
+              right: '-100px',
+              width: '300px',
+              height: '300px',
+              background: 'var(--primary-color)',
+              opacity: 0.05,
               filter: 'blur(100px)',
               borderRadius: '50%',
               pointerEvents: 'none'
             }} />
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem' }}>
-              
+
               {/* LeetCode Section */}
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '2.5rem' }}>
@@ -73,8 +73,8 @@ const Stats = ({ githubUsername, leetcodeUsername }) => {
                   <div style={{ position: 'relative', width: '130px', height: '130px' }}>
                     <svg width="130" height="130" viewBox="0 0 120 120">
                       <circle cx="60" cy="60" r="54" fill="none" stroke="var(--glass-border)" strokeWidth="8" />
-                      <circle 
-                        cx="60" cy="60" r="54" fill="none" stroke="var(--primary-color)" strokeWidth="8" 
+                      <circle
+                        cx="60" cy="60" r="54" fill="none" stroke="var(--primary-color)" strokeWidth="8"
                         strokeDasharray="339.29"
                         strokeDashoffset={339.29 - (displayLeet.totalSolved / 2000) * 339.29}
                         strokeLinecap="round"
@@ -87,7 +87,7 @@ const Stats = ({ githubUsername, leetcodeUsername }) => {
                       <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px' }}>Solved</div>
                     </div>
                   </div>
-                  
+
                   <div style={{ flex: 1 }}>
                     <div style={{ marginBottom: '10px' }}>
                       <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '4px' }}>Global Rank</div>
@@ -111,13 +111,13 @@ const Stats = ({ githubUsername, leetcodeUsername }) => {
                         <span style={{ color: 'var(--text-color)', fontWeight: '500' }}>{item.solved}<span style={{ color: 'var(--text-muted)', fontWeight: 'normal' }}>/{item.total}</span></span>
                       </div>
                       <div style={{ height: '8px', background: 'var(--glass-border)', borderRadius: '4px', overflow: 'hidden' }}>
-                        <div 
-                          style={{ 
-                            height: '100%', 
+                        <div
+                          style={{
+                            height: '100%',
                             width: `${(item.solved / item.total) * 100}%`,
-                            background: item.color, 
-                            borderRadius: '4px', 
-                            boxShadow: `0 0 10px ${item.color}44` 
+                            background: item.color,
+                            borderRadius: '4px',
+                            boxShadow: `0 0 10px ${item.color}44`
                           }}
                         />
                       </div>
@@ -135,27 +135,27 @@ const Stats = ({ githubUsername, leetcodeUsername }) => {
                   <h3 style={{ fontSize: '1.5rem', color: 'var(--text-color)' }}>GitHub Activity</h3>
                 </div>
 
-                <div style={{ 
+                <div style={{
                   width: '100%',
                   overflowX: 'auto',
                   padding: '10px 0',
                   WebkitOverflowScrolling: 'touch',
                   marginBottom: '2rem'
                 }}>
-                  <div style={{ 
-                    display: 'grid', 
-                    gridTemplateColumns: 'repeat(53, 1fr)', 
+                  <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(53, 1fr)',
                     gap: '3px',
                     width: '100%',
-                    minWidth: '650px',
-                    aspectRatio: '53 / 7'
+                    minWidth: '700px',
+                    aspectRatio: '7/1'
                   }}>
                     {gitStats && gitStats.contributions ? (
                       gitStats.contributions.slice(-371).map((day, index) => (
-                        <div 
-                          key={index} 
-                          style={{ 
-                            width: '100%', 
+                        <div
+                          key={index}
+                          style={{
+                            width: '100%',
                             height: '100%',
                             background: getContributionColor(day.level),
                             borderRadius: '2px',
@@ -186,7 +186,7 @@ const Stats = ({ githubUsername, leetcodeUsername }) => {
                   </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '1.5rem' }}>
                   <div style={{ padding: '1.5rem', background: 'var(--glass-bg)', borderRadius: '16px', border: '1px solid var(--glass-border)', textAlign: 'center' }}>
                     <div style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--primary-color)', marginBottom: '4px' }}>
                       {gitStats?.totalContributions || '1,240'}
