@@ -8,17 +8,17 @@ const Stats = ({ githubUsername, leetcodeUsername }) => {
   const { stats: gitStats, loading: gitLoading } = useGitHubStats(githubUsername);
 
   const fallbackLeet = {
-    totalSolved: 450,
-    easySolved: 150,
-    totalEasy: 500,
-    mediumSolved: 250,
-    totalMedium: 1000,
-    hardSolved: 50,
-    totalHard: 400,
-    ranking: '125,430'
+    totalSolved: 0,
+    easySolved: 0,
+    totalEasy: 0,
+    mediumSolved: 0,
+    totalMedium: 0,
+    hardSolved: 0,
+    totalHard: 0,
+    ranking: '---'
   };
 
-  const displayLeet = (leetStats && leetStats.status !== 'error') ? leetStats : fallbackLeet;
+  const displayLeet = leetStats && leetStats.status !== 'error' ? leetStats : fallbackLeet;
 
   const getContributionColor = (level) => {
     const colors = {
@@ -33,7 +33,7 @@ const Stats = ({ githubUsername, leetcodeUsername }) => {
     <section id="stats" className="section" style={{ position: 'relative' }}>
       <div className="container">
         <div>
-          <h2 className="gradient-text" style={{ fontSize: '2.5rem', marginBottom: '3rem' }}>Coding Performance</h2>
+          <h2 className="gradient-text" style={{ fontSize: '2.5rem', marginBottom: '3rem', textAlign: 'center' }}>Coding Performance</h2>
 
           <div className="glass-card" style={{
             padding: '3rem',
@@ -61,72 +61,92 @@ const Stats = ({ githubUsername, leetcodeUsername }) => {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem' }}>
 
               {/* LeetCode Section */}
-              <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '2.5rem' }}>
-                  <div style={{ padding: '10px', background: 'rgba(255, 192, 30, 0.1)', borderRadius: '12px', color: '#ffc01e' }}>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="24" height="24">
-                      <path d="M12 13h7.5" />
-                      <path d="M9.424 7.268l4.999 -4.999" />
-                      <path d="M16.633 16.644l-2.402 2.415a3.189 3.189 0 0 1 -4.524 0l-3.77 -3.787a3.223 3.223 0 0 1 0 -4.544l3.77 -3.787a3.189 3.189 0 0 1 4.524 0l2.302 2.313" />
-                    </svg>
+              <div style={{ position: 'relative', minHeight: '400px' }}>
+                {leetLoading && (
+                  <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    background: 'var(--card-bg)',
+                    backdropFilter: 'blur(5px)',
+                    zIndex: 2,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderRadius: '20px'
+                  }}>
+                    <div className="loader">Loading Stats...</div>
                   </div>
-                  <h3 style={{ fontSize: '1.5rem', color: 'var(--text-color)' }}>LeetCode</h3>
-                </div>
-
-                <div style={{ display: 'flex', alignItems: 'center', gap: '2rem', marginBottom: '2.5rem' }}>
-                  <div style={{ position: 'relative', width: '130px', height: '130px' }}>
-                    <svg width="130" height="130" viewBox="0 0 120 120">
-                      <circle cx="60" cy="60" r="54" fill="none" stroke="var(--glass-border)" strokeWidth="8" />
-                      <circle
-                        cx="60" cy="60" r="54" fill="none" stroke="var(--primary-color)" strokeWidth="8"
-                        strokeDasharray="339.29"
-                        strokeDashoffset={339.29 - (displayLeet.totalSolved / 2000) * 339.29}
-                        strokeLinecap="round"
-                        transform="rotate(-90 60 60)"
-                        style={{ filter: 'drop-shadow(0 0 5px var(--primary-color))' }}
-                      />
-                    </svg>
-                    <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center' }}>
-                      <div style={{ fontSize: '1.8rem', fontWeight: '800', color: 'var(--text-color)' }}>{displayLeet.totalSolved}</div>
-                      <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px' }}>Solved</div>
+                )}
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '2.5rem' }}>
+                    <div style={{ padding: '10px', background: 'rgba(255, 192, 30, 0.1)', borderRadius: '12px', color: '#ffc01e' }}>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="24" height="24">
+                        <path d="M12 13h7.5" />
+                        <path d="M9.424 7.268l4.999 -4.999" />
+                        <path d="M16.633 16.644l-2.402 2.415a3.189 3.189 0 0 1 -4.524 0l-3.77 -3.787a3.223 3.223 0 0 1 0 -4.544l3.77 -3.787a3.189 3.189 0 0 1 4.524 0l2.302 2.313" />
+                      </svg>
                     </div>
+                    <h3 style={{ fontSize: '1.5rem', color: 'var(--text-color)' }}>LeetCode</h3>
                   </div>
 
-                  <div style={{ flex: 1 }}>
-                    <div style={{ marginBottom: '10px' }}>
-                      <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '4px' }}>Global Rank</div>
-                      <div style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'var(--primary-color)' }}>#{displayLeet.ranking}</div>
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                      <Activity size={14} /> Active Solver
-                    </div>
-                  </div>
-                </div>
-
-                <div style={{ display: 'grid', gap: '1.2rem' }}>
-                  {[
-                    { label: 'Easy', solved: displayLeet.easySolved, total: displayLeet.totalEasy, color: '#00b8a3' },
-                    { label: 'Medium', solved: displayLeet.mediumSolved, total: displayLeet.totalMedium, color: '#ffc01e' },
-                    { label: 'Hard', solved: displayLeet.hardSolved, total: displayLeet.totalHard, color: '#ff375f' }
-                  ].map((item) => (
-                    <div key={item.label}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '0.9rem' }}>
-                        <span style={{ color: item.color, fontWeight: '600' }}>{item.label}</span>
-                        <span style={{ color: 'var(--text-color)', fontWeight: '500' }}>{item.solved}<span style={{ color: 'var(--text-muted)', fontWeight: 'normal' }}>/{item.total}</span></span>
-                      </div>
-                      <div style={{ height: '8px', background: 'var(--glass-border)', borderRadius: '4px', overflow: 'hidden' }}>
-                        <div
-                          style={{
-                            height: '100%',
-                            width: `${(item.solved / item.total) * 100}%`,
-                            background: item.color,
-                            borderRadius: '4px',
-                            boxShadow: `0 0 10px ${item.color}44`
-                          }}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '2rem', marginBottom: '2.5rem' }}>
+                    <div style={{ position: 'relative', width: '130px', height: '130px' }}>
+                      <svg width="130" height="130" viewBox="0 0 120 120">
+                        <circle cx="60" cy="60" r="54" fill="none" stroke="var(--glass-border)" strokeWidth="8" />
+                        <circle
+                          cx="60" cy="60" r="54" fill="none" stroke="var(--primary-color)" strokeWidth="8"
+                          strokeDasharray="339.29"
+                          strokeDashoffset={339.29 - (displayLeet.totalSolved / (displayLeet.totalQuestions || 2000)) * 339.29}
+                          strokeLinecap="round"
+                          transform="rotate(-90 60 60)"
+                          style={{ filter: 'drop-shadow(0 0 5px var(--primary-color))' }}
                         />
+                      </svg>
+                      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center' }}>
+                        <div style={{ fontSize: '1.8rem', fontWeight: '800', color: 'var(--text-color)' }}>{displayLeet.totalSolved}</div>
+                        <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px' }}>Solved</div>
                       </div>
                     </div>
-                  ))}
+
+                    <div style={{ flex: 1 }}>
+                      <div style={{ marginBottom: '10px' }}>
+                        <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '4px' }}>Global Rank</div>
+                        <div style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'var(--primary-color)' }}>#{displayLeet.ranking}</div>
+                      </div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+                        <Activity size={14} /> Active Solver
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'grid', gap: '1.2rem' }}>
+                    {[
+                      { label: 'Easy', solved: displayLeet.easySolved, total: displayLeet.totalEasy, color: '#00b8a3' },
+                      { label: 'Medium', solved: displayLeet.mediumSolved, total: displayLeet.totalMedium, color: '#ffc01e' },
+                      { label: 'Hard', solved: displayLeet.hardSolved, total: displayLeet.totalHard, color: '#ff375f' }
+                    ].map((item) => (
+                      <div key={item.label}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '0.9rem' }}>
+                          <span style={{ color: item.color, fontWeight: '600' }}>{item.label}</span>
+                          <span style={{ color: 'var(--text-color)', fontWeight: '500' }}>{item.solved}<span style={{ color: 'var(--text-muted)', fontWeight: 'normal' }}>/{item.total}</span></span>
+                        </div>
+                        <div style={{ height: '8px', background: 'var(--glass-border)', borderRadius: '4px', overflow: 'hidden' }}>
+                          <div
+                            style={{
+                              height: '100%',
+                              width: `${(item.solved / item.total) * 100}%`,
+                              background: item.color,
+                              borderRadius: '4px',
+                              boxShadow: `0 0 10px ${item.color}44`
+                            }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
 

@@ -132,7 +132,7 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          style={{ marginBottom: '5rem' }}
+          style={{ textAlign: 'center', marginBottom: '5rem' }}
         >
           <h2 className="gradient-text" style={{
             fontSize: 'clamp(3rem, 6vw, 4rem)',
@@ -146,7 +146,7 @@ const Contact = () => {
             color: 'var(--text-secondary)',
             fontSize: '1.2rem',
             maxWidth: '700px',
-            margin: '0',
+            margin: '0 auto',
             lineHeight: '1.6'
           }}>
             Ready to elevate your software quality? Let's build something extraordinary together.

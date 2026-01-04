@@ -16,7 +16,7 @@ const About = () => {
     <section id="about" className="section" style={{ position: 'relative', overflow: 'hidden' }}>
       <div className="container">
         <div>
-          <h2 className="gradient-text" style={{ fontSize: '2.5rem', marginBottom: '3rem' }}>About Me</h2>
+          <h2 className="gradient-text" style={{ fontSize: '2.5rem', marginBottom: '3rem', textAlign: 'center' }}>About Me</h2>
 
           <div className="grid-2" style={{ alignItems: 'start' }}>
             <div className="glass-card" style={{ padding: '2.5rem', height: '100%' }}>

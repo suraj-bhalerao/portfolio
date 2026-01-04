@@ -19,7 +19,7 @@ const Experience = () => {
   return (
     <section id="experience" className="section">
       <div className="container">
-        <h2 className="gradient-text" style={{ fontSize: '2.5rem', marginBottom: '4rem' }}>My Professional Journey</h2>
+        <h2 className="gradient-text" style={{ fontSize: '2.5rem', marginBottom: '4rem', textAlign: 'center' }}>My Professional Journey</h2>
 
         <div className="timeline">
           {experiences.map((exp, index) => (
