@@ -335,7 +335,7 @@ const Contact = () => {
                       background: 'rgba(255, 255, 255, 0.03)', 
                       border: '1px solid var(--glass-border)', 
                       borderRadius: '14px',
-                      color: 'white',
+                      color: 'var(--text-color)',
                       fontSize: '1rem',
                       outline: 'none',
                       transition: 'all 0.3s ease'
@@ -357,7 +357,7 @@ const Contact = () => {
                       background: 'rgba(255, 255, 255, 0.03)', 
                       border: '1px solid var(--glass-border)', 
                       borderRadius: '14px',
-                      color: 'white',
+                      color: 'var(--text-color)',
                       fontSize: '1rem',
                       outline: 'none',
                       transition: 'all 0.3s ease'
@@ -381,7 +381,7 @@ const Contact = () => {
                     background: 'rgba(255, 255, 255, 0.03)', 
                     border: '1px solid var(--glass-border)', 
                     borderRadius: '14px',
-                    color: 'white',
+                    color: 'var(--text-color)',
                     fontSize: '1rem',
                     outline: 'none',
                     transition: 'all 0.3s ease'
@@ -404,7 +404,7 @@ const Contact = () => {
                     background: 'rgba(255, 255, 255, 0.03)', 
                     border: '1px solid var(--glass-border)', 
                     borderRadius: '14px',
-                    color: 'white',
+                    color: 'var(--text-color)',
                     fontSize: '1rem',
                     outline: 'none',
                     resize: 'none',
@@ -516,6 +516,23 @@ const Contact = () => {
         .contact-link:hover {
           color: var(--primary-color) !important;
           padding-left: 5px;
+        }
+        @media (max-width: 640px) {
+          .glass-card {
+            flex-direction: column;
+            text-align: center;
+            padding: 1.5rem !important;
+          }
+          .glass-card > div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+          }
+          .contact-link {
+            font-size: 1rem !important;
+            word-break: break-all;
+          }
         }
       `}} />
     </section>
