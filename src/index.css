@@ -183,7 +183,7 @@ ul {
 @media (max-width: 768px) {
   .section {
     padding: 40px 0;
-  }
+  } /*ads*/
 
   .hero-section {
     min-height: auto !important;
