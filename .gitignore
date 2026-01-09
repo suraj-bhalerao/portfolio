@@ -113,3 +113,14 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# IDE and editor files
+.vscode/
+
+# Agent and workflow files
+.agent/
+
+# Additional environment files
+.env.local
+.env.development
+.env.staging
