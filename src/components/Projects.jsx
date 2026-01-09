@@ -1,5 +1,4 @@
 import React from 'react';
-import useGitHub from '../hooks/useGitHub';
 import { ExternalLink, Code2, Star, GitFork } from 'lucide-react';
 import project1 from '../assets/project1.png';
 import project2 from '../assets/project2.png';
@@ -9,19 +8,17 @@ import project5 from '../assets/project5.png';
 import project6 from '../assets/project6.png';
 
 const Projects = ({ username }) => {
-  const { repos, loading, error } = useGitHub(username);
-
   const projects = [
-    {
-      id: 1,
-      name: 'Data_Generation_Scripts',
-      description: 'Automated scripts for generating large-scale test data sets for performance testing.',
-      html_url: 'https://github.com/suraj-bhalerao/Data_Generation_Scripts',
-      language: 'Python',
-      stargazers_count: 0,
-      forks_count: 0,
-      image: project1
-    },
+    // {
+    //   id: 1,
+    //   name: 'Data_Generation_Scripts',
+    //   description: 'Automated scripts for generating large-scale test data sets for performance testing.',
+    //   html_url: 'https://github.com/suraj-bhalerao/Data_Generation_Scripts',
+    //   language: 'Python',
+    //   stargazers_count: 0,
+    //   forks_count: 0,
+    //   image: project1
+    // },
     {
       id: 2,
       name: 'RPI_',
@@ -64,14 +61,34 @@ const Projects = ({ username }) => {
     },
     {
       id: 6,
-      name: '4G_FOTA_ACTIVITY',
-      description: 'Automation scripts for 4G Firmware Over-The-Air (FOTA) update testing.',
-      html_url: 'https://github.com/suraj-bhalerao/4G_FOTA_ACTIVITY',
-      language: 'Python',
+      name: 'RENT_RABBIT',
+      description: 'Car Rental Management System',
+      html_url: 'https://github.com/SurajBhalerao27/RENT_RABBIT',
+      language: 'Java',
       stargazers_count: 0,
       forks_count: 0,
       image: project6
-    }
+    },
+    {
+      id: 7,
+      name: 'File-Uploader',
+      description: 'File Uploading System',
+      html_url: 'https://github.com/SurajBhalerao27/File-Uploader',
+      language: 'HTML, CSS, JS',
+      stargazers_count: 0,
+      forks_count: 0,
+      image: project1
+    },
+    // {
+    //   id: 6,
+    //   name: '4G_FOTA_ACTIVITY',
+    //   description: 'Automation scripts for 4G Firmware Over-The-Air (FOTA) update testing.',
+    //   html_url: 'https://github.com/suraj-bhalerao/4G_FOTA_ACTIVITY',
+    //   language: 'Python',
+    //   stargazers_count: 0,
+    //   forks_count: 0,
+    //   image: project6
+    // }
   ];
 
   return (
